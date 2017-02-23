@@ -116,6 +116,9 @@ export class MentionDirective {
         }
         else if (!this.searchList.hidden) {
           if (event.keyCode === KEY_TAB || event.keyCode === KEY_ENTER) {
+            var customEvt = new CustomEvent('added', {bubbles: true, 'detail': this.searchList.activeItem});
+            nativeElement.dispatchEvent(customEvt);
+
             this.stopEvent(event);
             this.searchList.hidden = true;
             // value is inserted without a trailing space for consistency
